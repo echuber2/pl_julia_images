@@ -1,12 +1,13 @@
 #!/bin/bash
 
-#export platform="linux/arm64/v8,linux/amd64"
+export platform="linux/arm64/v8,linux/amd64"
 #export platform="linux/arm64/v8"
-export platform="linux/amd64"
+#export platform="linux/amd64"
 
-tag="0.3.0"
+tag="0.4.0"
 
-for image in pl-julia-datascience-base pl-julia-datascience-precompile pl-julia-datascience-grader pl-julia-datascience-pluto-workspace
+# pl-julia-datascience-precompile 
+for image in pl-julia-datascience-base pl-julia-datascience-grader pl-julia-datascience-pluto-workspace
 do
     echo "------------------- Building ${image} -------------------"
     cd $image

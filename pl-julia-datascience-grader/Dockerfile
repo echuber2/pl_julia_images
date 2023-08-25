@@ -1,4 +1,4 @@
-FROM ctessum/pl-julia-datascience-precompile:latest
+FROM ctessum/pl-julia-datascience-base:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     uuid-runtime \
