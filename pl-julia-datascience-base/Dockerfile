@@ -14,4 +14,4 @@ COPY Project.toml ${JL_DIR}
 
 ENV PRAIRIELEARN TRUE
 
-RUN julia -E 'import Pkg; Pkg.instantiate()'
+RUN julia --project=${JL_DIR} -E 'import Pkg; Pkg.instantiate()'

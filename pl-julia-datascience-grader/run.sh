@@ -53,7 +53,6 @@ chmod +r $FILENAMES_DIR/output-fname.txt
 
 # run the autograder as a limited user called ag
 su -c "julia --project=/jl --color=no --heap-size-hint=1G $MERGE_DIR/filenames/test.jl" ag
-# --sysimage=/jl_depot/sysimage.so 
 
 # remove any "fake" results.json files if they exist
 rm -f $MERGE_DIR/results.json
