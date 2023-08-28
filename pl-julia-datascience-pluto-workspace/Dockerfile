@@ -29,6 +29,6 @@ EXPOSE 1234
 
 # Precompile startup package
 COPY Startup/ ${JL_DIR}/Startup/
-RUN julia -E "import Pkg; Pkg.develop(path=\"${JL_DIR}/Startup\"); Pkg.add(\"Pluto\"); using Startup"
+RUN julia --project=${JL_DIR} -E "import Pkg; Pkg.develop(path=\"${JL_DIR}/Startup\"); using Startup"
 
-CMD [ "julia", "--color=no", "--heap-size-hint=1G", "/jl/startup.jl" ]
+CMD [ "julia", "--project=/jl", "--color=no", "--heap-size-hint=1G", "/jl/startup.jl" ]
