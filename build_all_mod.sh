@@ -6,14 +6,19 @@ export platform="linux/amd64" # Cross-compilation not working.
 
 tag="0.4.1"
 
+if [[ $(id -u) -ne 0 ]]; then
+    echo "Error: Must run as root" ; exit 1
+fi
 
 #for image in pl-julia-datascience-pluto-workspace
 for image in pl-julia-datascience-base pl-julia-datascience-grader pl-julia-datascience-pluto-workspace
 do
     echo "------------------- Building ${image} -------------------"
-    cd $image
-    docker buildx build --platform $platform --push --tag ctessum/${image}:latest --tag ctessum/${image}:${tag} .
-    cd ..
+    pushd $image || exit
+    # docker buildx build --platform $platform --push --tag ctessum/${image}:latest --tag ctessum/${image}:${tag} .
+    docker buildx build --progress=plain --platform $platform --tag ctessum/${image}:latest --tag ctessum/${image}:${tag} . || exit
+    # docker build --tag ctessum/${image}:latest --tag ctessum/${image}:${tag} . || exit
+    popd
 done
 
 # 0.2.0 time to working HW1: 12:41 (laggy even after this)
